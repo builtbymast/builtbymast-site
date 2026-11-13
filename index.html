@@ -3,576 +3,851 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>built by mast — Gold Coast & Brisbane Web Design</title>
+<title>built by mast — Gold Coast &amp; Brisbane Web Design</title>
+<meta name="description" content="Fast, mobile-first websites for Gold Coast and Brisbane businesses. Fixed quote upfront. You deal with Amy directly.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #f4f3ee;
-  --text: #0f1f38;
-  --accent: #0b6bea;
-  --accent-dark: #0a5bc8;
-  --muted: #4a5568;
-  --card: #ffffff;
-  --border: #e2e0d8;
+:root{
+  --bg:#f5f4ef; --paper:#fbfaf6; --white:#ffffff;
+  --navy:#0f1f38; --navy-2:#16294a; --navy-3:#1f3660;
+  --ink:#0f1f38; --muted:#5a6475; --soft:#8a92a0;
+  --line:#e3e0d6; --line-2:#d6d2c5;
+  --gold:#b8915a; --blue:#2f6fd6;
+  --radius:14px; --radius-lg:20px;
+  --shadow-sm:0 1px 2px rgba(15,31,56,.04),0 2px 8px rgba(15,31,56,.04);
+  --shadow-md:0 2px 4px rgba(15,31,56,.04),0 12px 32px rgba(15,31,56,.08);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Instrument Sans', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  font-size: 18px;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:.95rem;line-height:1;border:1px solid transparent;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;font-family:inherit;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy-3);box-shadow:0 8px 20px rgba(15,31,56,.18)}
+.btn-light{background:#fff;color:var(--navy)}
+.btn-light:hover{background:var(--bg)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-ghost-light:hover{border-color:#fff}
+.btn .arrow{transition:transform .2s ease}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(245,244,239,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.logo{display:flex;align-items:baseline;gap:10px;font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.logo-mark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--navy);color:#fff;font-family:var(--serif);font-style:italic;font-size:1.15rem;font-weight:400;align-self:center}
+.logo small{font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{font-size:.92rem;font-weight:500;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.nav .btn{color:#fff;padding:11px 18px;font-size:.88rem}
+.menu-toggle{display:none;background:none;border:1px solid var(--line-2);border-radius:10px;width:42px;height:42px;cursor:pointer;align-items:center;justify-content:center}
+.menu-toggle span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative;transition:background .2s}
+.menu-toggle span::before,.menu-toggle span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--ink);transition:transform .25s}
+.menu-toggle span::before{top:-6px}.menu-toggle span::after{top:6px}
+.menu-open .menu-toggle span{background:transparent}
+.menu-open .menu-toggle span::before{transform:translateY(6px) rotate(45deg)}
+.menu-open .menu-toggle span::after{transform:translateY(-6px) rotate(-45deg)}
+
+/* Ticker */
+.ticker{overflow:hidden;background:#0f1f38;color:#e9e6dc;padding:13px 0;font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;position:relative}
+.ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,#0f1f38,rgba(15,31,56,0))}
+.ticker::after{right:0;background:linear-gradient(-90deg,#0f1f38,rgba(15,31,56,0))}
+.ticker-track{display:flex;width:max-content;animation:marquee 60s linear infinite;will-change:transform}
+.ticker-group{display:flex;flex-shrink:0;align-items:center}
+.ticker-group span{padding:0 22px;white-space:nowrap}
+.ticker-group i{font-style:normal;color:var(--gold);font-size:.7rem}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+
+/* Hero */
+.hero{position:relative;padding:88px 0 96px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:.45;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 42%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 30% 42%,#000 20%,transparent 75%);pointer-events:none}
+.hero .container{position:relative}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1.02;font-weight:600;letter-spacing:-.035em;margin:22px 0 24px}
+.hero h1 .serif{font-size:1.08em;color:var(--navy-3)}
+.hero .lede{font-size:1.15rem;color:var(--muted);max-width:560px;margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
+.proof{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line-2);padding-top:22px;max-width:580px}
+.proof div{flex:1 1 0;min-width:140px;padding-right:18px}
+.proof div+div{padding-left:18px;border-left:1px solid var(--line)}
+.proof strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.55rem;line-height:1.1;letter-spacing:-.01em}
+.proof span{font-size:.82rem;color:var(--muted)}
+
+.check-card{background:var(--navy);color:#e9ecf3;border-radius:var(--radius-lg);padding:36px;box-shadow:0 30px 60px -20px rgba(15,31,56,.45);position:relative;overflow:hidden}
+.check-card::after{content:"";position:absolute;right:-80px;top:-80px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 40px rgba(255,255,255,.025),0 0 0 80px rgba(255,255,255,.02)}
+.check-card .tag{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#c9b48e}
+.check-card .tag::before{content:"";width:7px;height:7px;border-radius:50%;background:#5fd08a;box-shadow:0 0 0 4px rgba(95,208,138,.18)}
+.check-card h2{font-size:1.85rem;line-height:1.15;font-weight:600;letter-spacing:-.02em;color:#fff;margin:14px 0 10px}
+.check-card h2 .serif{color:#d9c39b}
+.check-card p{font-size:.95rem;color:#aeb7c8;margin-bottom:24px}
+.check-list{list-style:none;border-top:1px solid rgba(255,255,255,.1);margin-bottom:28px}
+.check-list li{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.check-list .n{font-family:var(--serif);font-style:italic;color:#c9b48e;font-size:1.1rem;line-height:1.3;min-width:22px}
+.check-list b{display:block;color:#fff;font-weight:600;font-size:.98rem}
+.check-list small{color:#93a0b6;font-size:.85rem}
+.check-card .actions{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.check-card .actions .btn{width:100%}
+
+/* Sections */
+section{padding:112px 0}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px}
+.section-head h2{font-size:clamp(2rem,3.8vw,3rem);line-height:1.05;letter-spacing:-.03em;font-weight:600;margin-top:16px}
+.section-head h2 .serif{color:var(--navy-3)}
+.section-head p{color:var(--muted);max-width:460px;justify-self:end}
+.bg-paper{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bg-white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* Pain/fix */
+.fix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fix-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.fix-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--line-2)}
+.fix-card .num{font-family:var(--serif);font-style:italic;font-size:2.6rem;line-height:1;color:var(--gold);margin-bottom:22px}
+.fix-card h3{font-size:1.25rem;line-height:1.3;letter-spacing:-.015em;margin-bottom:22px}
+.block{padding:16px 0;border-top:1px solid var(--line)}
+.block:last-child{padding-bottom:0}
+.block-label{display:flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+.block-label::before{content:"";width:6px;height:6px;border-radius:50%;background:#d7a07a}
+.block.fix .block-label{color:var(--navy-3)}
+.block.fix .block-label::before{background:#4f9a72}
+.block p{font-size:.95rem;color:var(--muted)}
+.block.fix p{color:var(--ink)}
+
+/* Work */
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.work-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.work-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.work-preview{height:300px;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding:32px 32px 0}
+.work-info{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 26px 24px;border-top:1px solid var(--line)}
+.work-info h3{font-size:1.15rem;letter-spacing:-.01em}
+.work-info p{font-size:.88rem;color:var(--muted)}
+.label{flex-shrink:0;font-size:.72rem;font-weight:600;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted);background:var(--paper)}
+.label.sample{border-style:dashed}
+
+/* Browser frame */
+.browser{width:100%;max-width:470px;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 20px 50px -12px rgba(15,31,56,.35);overflow:hidden;transition:transform .4s ease}
+.work-card:hover .browser,.work-card:hover .phone-pair{transform:translateY(-6px)}
+.b-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#f1efe9;border-bottom:1px solid #e4e1d8}
+.b-bar i{width:8px;height:8px;border-radius:50%;background:#d9d5ca}
+.b-url{flex:1;margin-left:10px;height:18px;border-radius:6px;background:#fff;font-size:.62rem;color:#8a92a0;display:flex;align-items:center;padding:0 8px;letter-spacing:.02em}
+.b-body{padding:16px;height:220px;position:relative}
+.ui-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.ui-logo{width:56px;height:10px;border-radius:3px}
+.ui-links{display:flex;gap:6px}
+.ui-links i{display:block;width:22px;height:5px;border-radius:3px;background:#e4e1d8}
+.ui-pill{width:44px;height:14px;border-radius:999px}
+.ln{display:block;height:7px;border-radius:4px;background:#e7e4dc;margin-bottom:7px}
+.ln.h{height:14px;border-radius:5px;margin-bottom:9px}
+
+/* FixYo */
+.pv-fixyo{background:linear-gradient(160deg,#e9eefc 0%,#dfe7fb 55%,#f3f0ff 100%)}
+.pv-fixyo .ui-logo{background:#3a4ee0}
+.pv-fixyo .ui-pill{background:#3a4ee0}
+.fy-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+.fy-hero .ln.h{background:#1d2340}
+.fy-search{display:flex;align-items:center;gap:6px;margin-top:12px;height:26px;border:1px solid #dfe3f3;border-radius:999px;padding:0 4px 0 10px}
+.fy-search i{flex:1;height:5px;border-radius:3px;background:#e4e7f3}
+.fy-search b{width:42px;height:18px;border-radius:999px;background:#3a4ee0}
+.fy-chat{background:#f5f6fd;border:1px solid #e6e9f7;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:7px}
+.fy-msg{height:16px;border-radius:8px 8px 8px 2px;background:#fff;border:1px solid #e6e9f7;width:80%}
+.fy-msg.me{align-self:flex-end;background:#3a4ee0;border-color:#3a4ee0;border-radius:8px 8px 2px 8px;width:60%}
+.fy-msg.w2{width:68%}
+.fy-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.fy-tiles i{height:34px;border-radius:8px;background:#f4f5fb;border:1px solid #eceefa}
+
+/* TruckAmate */
+.pv-truck{background:linear-gradient(160deg,#1a2436 0%,#243450 100%)}
+.pv-truck .browser{background:#121a28}
+.pv-truck .b-bar{background:#1b2536;border-color:#263248}
+.pv-truck .b-bar i{background:#334158}
+.pv-truck .b-url{background:#0f1622;color:#6b7a93}
+.tk-wrap{display:grid;grid-template-columns:96px 1fr;gap:12px;height:100%}
+.tk-side{background:#182233;border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.tk-side .ui-logo{background:#f2a33a;width:48px}
+.tk-side i{height:6px;border-radius:3px;background:#2a374d}
+.tk-side i.on{background:#f2a33a;opacity:.6}
+.tk-main{display:grid;grid-template-rows:auto 1fr;gap:10px}
+.tk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tk-stats div{background:#182233;border-radius:8px;padding:8px}
+.tk-stats b{display:block;height:10px;width:60%;border-radius:3px;background:#e8ecf3;margin-bottom:6px}
+.tk-stats i{display:block;height:5px;width:80%;border-radius:3px;background:#2f3d55}
+.tk-map{border-radius:8px;position:relative;overflow:hidden;background:#162030;background-image:linear-gradient(#1e2a3d 1px,transparent 1px),linear-gradient(90deg,#1e2a3d 1px,transparent 1px);background-size:18px 18px}
+.tk-map svg{position:absolute;inset:0;width:100%;height:100%}
+.tk-pin{position:absolute;width:10px;height:10px;border-radius:50%;background:#f2a33a;box-shadow:0 0 0 5px rgba(242,163,58,.22)}
+
+/* Ascent Money (phones) */
+.pv-ascent{background:linear-gradient(160deg,#e6f3ec 0%,#d6ebe0 100%);align-items:flex-end}
+.phone-pair{display:flex;gap:18px;align-items:flex-end;transition:transform .4s ease}
+.phone{width:150px;height:250px;background:#fff;border-radius:22px 22px 0 0;border:6px solid #11251c;border-bottom:none;padding:14px 12px 0;box-shadow:0 20px 40px -12px rgba(17,37,28,.4);position:relative;overflow:hidden}
+.phone.tall{height:270px}
+.phone::before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:40px;height:8px;border-radius:999px;background:#11251c}
+.am-bal{margin-top:14px;background:#11251c;border-radius:12px;padding:12px}
+.am-bal i{display:block;height:5px;width:45%;border-radius:3px;background:#3b5c4c;margin-bottom:8px}
+.am-bal b{display:block;height:14px;width:75%;border-radius:4px;background:#9be2b9}
+.am-chart{display:flex;align-items:flex-end;gap:5px;height:64px;margin:14px 0 10px;padding:0 2px}
+.am-chart i{flex:1;border-radius:3px 3px 0 0;background:#cfe9da}
+.am-chart i.hi{background:#2f9e64}
+.am-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #eef3f0}
+.am-row em{width:18px;height:18px;border-radius:6px;background:#e3f2ea;flex-shrink:0}
+.am-row i{flex:1;height:5px;border-radius:3px;background:#e4ebe7}
+.am-ring{width:84px;height:84px;margin:18px auto 12px;border-radius:50%;background:conic-gradient(#2f9e64 0 68%,#e3f2ea 68% 100%);display:grid;place-items:center}
+.am-ring::after{content:"";width:60px;height:60px;border-radius:50%;background:#fff}
+.am-btn{height:24px;border-radius:999px;background:#11251c;margin-top:12px}
+
+/* Performance workshop */
+.pv-perf{background:linear-gradient(160deg,#f3ece4 0%,#eadfd2 100%)}
+.pf-hero{height:96px;border-radius:8px;background:linear-gradient(120deg,#151515 0%,#2b2b2b 60%,#7a1f1f 150%);position:relative;padding:14px;margin-bottom:12px}
+.pf-hero .ln.h{width:58%;background:#f5f1ea}
+.pf-hero .ln{width:42%;background:#5b5b5b}
+.pf-hero b{position:absolute;left:14px;bottom:14px;width:70px;height:18px;border-radius:4px;background:#d63a2f}
+.pf-stripe{position:absolute;right:14px;top:14px;bottom:14px;width:60px;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 6px,transparent 6px 12px);border-radius:4px}
+.pf-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pf-cards div{border:1px solid #ece8e1;border-radius:8px;padding:9px}
+.pf-cards em{display:block;width:18px;height:18px;border-radius:5px;background:#f4dcd9;margin-bottom:8px}
+.pv-perf .ui-logo{background:#151515}
+.pv-perf .ui-pill{background:#d63a2f;border-radius:4px}
+
+/* Pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.price-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:36px 32px;display:flex;flex-direction:column;position:relative;transition:transform .25s ease,box-shadow .25s ease}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.price-card .tier{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.price-card .amount{font-size:3rem;font-weight:600;letter-spacing:-.04em;line-height:1;margin:18px 0 6px}
+.price-card .amount small{font-size:.9rem;font-weight:500;letter-spacing:0;color:var(--muted);margin-left:4px}
+.price-card .desc{color:var(--muted);font-size:.95rem;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+.price-card ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:32px;flex:1}
+.price-card li{display:flex;gap:11px;font-size:.93rem;line-height:1.45}
+.price-card li::before{content:"";flex-shrink:0;width:16px;height:16px;margin-top:2px;border-radius:50%;background:#eef2f8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%230f1f38' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.price-card .btn{width:100%}
+.price-card.featured{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 30px 60px -24px rgba(15,31,56,.55)}
+.price-card.featured .tier{color:#c9b48e}
+.price-card.featured .amount small,.price-card.featured .desc{color:#aeb7c8}
+.price-card.featured .desc{border-color:rgba(255,255,255,.12)}
+.price-card.featured li{color:#e3e8f1}
+.price-card.featured li::before{background-color:rgba(255,255,255,.12);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.popular{position:absolute;top:22px;right:22px;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(201,180,142,.16);color:#d9c39b;border:1px solid rgba(201,180,142,.35)}
+.care{margin-top:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:22px 28px;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--paper)}
+.care b{font-weight:600}
+.care p{color:var(--muted);font-size:.93rem}
+.care .care-price{font-family:var(--serif);font-size:1.6rem;font-style:italic;white-space:nowrap}
+.fine{margin-top:14px;font-size:.82rem;color:var(--soft)}
+
+/* Process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:23px;height:1px;background:var(--line-2)}
+.step{padding-right:28px;position:relative}
+.step-dot{width:46px;height:46px;border-radius:50%;background:var(--bg);border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:1.2rem;position:relative;z-index:1;margin-bottom:24px;transition:background .25s,color .25s,border-color .25s}
+.step:hover .step-dot{background:var(--navy);color:#fff;border-color:var(--navy)}
+.step h3{font-size:1.1rem;letter-spacing:-.01em;margin-bottom:8px}
+.step p{font-size:.93rem;color:var(--muted)}
+.step .when{display:inline-block;margin-top:14px;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:start}
+.about-grid h2{font-size:clamp(2rem,3.8vw,3rem);line-height:1.05;letter-spacing:-.03em;font-weight:600;margin:16px 0 24px}
+.about-grid h2 .serif{color:var(--navy-3)}
+.about-copy p{color:var(--muted);margin-bottom:16px;max-width:540px}
+.about-copy p.lead{font-size:1.2rem;color:var(--ink);line-height:1.5}
+.sig{display:flex;align-items:center;gap:14px;margin-top:28px}
+.sig-avatar{width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:1.4rem}
+.sig b{display:block;font-size:.98rem}
+.sig span{font-size:.85rem;color:var(--muted)}
+.cap-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+.cap-card header{padding:22px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.cap-card header b{font-size:1rem}
+.cap-card header span{font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.cap-row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:18px 26px;border-bottom:1px solid var(--line)}
+.cap-row:last-child{border-bottom:none}
+.cap-row dt{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);padding-top:2px}
+.cap-row dd{font-size:.95rem}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:start}
+.faq-wrap h2{font-size:clamp(2rem,3.8vw,3rem);line-height:1.05;letter-spacing:-.03em;font-weight:600;margin:16px 0 16px}
+.faq-wrap h2 .serif{color:var(--navy-3)}
+.faq-wrap .intro p{color:var(--muted)}
+.faq{border-top:1px solid var(--line-2)}
+.faq details{border-bottom:1px solid var(--line-2)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq .ind{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:background .25s,border-color .25s}
+.faq .ind::before,.faq .ind::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .3s ease,background .25s}
+.faq .ind::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] .ind{background:var(--navy);border-color:var(--navy)}
+.faq details[open] .ind::before,.faq details[open] .ind::after{background:#fff}
+.faq details[open] .ind::after{transform:translate(-50%,-50%) rotate(0deg)}
+.faq summary:hover .ind{border-color:var(--ink)}
+.faq .answer{padding:0 56px 24px 0;color:var(--muted);animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* Contact */
+.contact{background:var(--navy);color:#e9ecf3;padding:112px 0 0;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 20% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse 60% 70% at 20% 30%,#000,transparent 75%);pointer-events:none}
+.contact .container{position:relative}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.contact .eyebrow{color:#aeb7c8}
+.contact h2{font-size:clamp(2.4rem,4.6vw,3.8rem);line-height:1.02;letter-spacing:-.035em;font-weight:600;color:#fff;margin:18px 0 22px}
+.contact h2 .serif{color:#d9c39b}
+.contact .lede{color:#aeb7c8;font-size:1.08rem;max-width:460px;margin-bottom:34px}
+.direct{display:flex;flex-direction:column;gap:12px;max-width:440px}
+.direct-row{display:flex;gap:10px}
+.direct a.big{flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border:1px solid rgba(255,255,255,.16);border-radius:14px;transition:border-color .2s,background .2s}
+.direct a.big:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.04)}
+.direct a.big small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8d9ab1;margin-bottom:2px}
+.direct a.big b{font-size:1.08rem;color:#fff;font-weight:600;word-break:break-all}
+.copy-btn{flex-shrink:0;width:60px;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;font-size:.72rem;font-weight:600;letter-spacing:.04em;transition:border-color .2s,background .2s}
+.copy-btn:hover{border-color:rgba(255,255,255,.5)}
+.copy-btn.done{background:#2f9e64;border-color:#2f9e64}
+.brief{background:#fff;color:var(--ink);border-radius:var(--radius-lg);padding:32px;box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
+.brief h3{font-size:1.25rem;letter-spacing:-.015em;margin-bottom:4px}
+.brief > p{color:var(--muted);font-size:.9rem;margin-bottom:22px}
+.field{margin-bottom:16px}
+.field label,.field .lbl{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:.95rem;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:var(--paper);color:var(--ink);transition:border-color .2s,background .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+.field textarea{resize:vertical;min-height:84px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{margin:0;cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);font-size:.85rem;font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);transition:all .2s}
+.chips input:checked + span{background:var(--navy);border-color:var(--navy);color:#fff}
+.chips input:focus-visible + span{outline:2px solid var(--blue);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.brief .btn{width:100%;margin-top:6px}
+.brief .note{font-size:.78rem;color:var(--soft);margin-top:12px;text-align:center}
+
+.site-footer{margin-top:96px;border-top:1px solid rgba(255,255,255,.1);padding:28px 0 36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:.85rem;color:#8d9ab1}
+.site-footer nav{display:flex;gap:22px}
+.site-footer nav a:hover{color:#fff}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* Responsive */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr 1fr;gap:48px}
+  .about-grid,.faq-wrap,.contact-grid{gap:48px}
 }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-header {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
+@media (max-width:860px){
+  .container{padding:0 22px}
+  .menu-toggle{display:inline-flex}
+  .nav{position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(245,244,239,.98);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:8px 22px 20px;display:none}
+  .menu-open .nav{display:flex}
+  .nav a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1rem;color:var(--ink)}
+  .nav .btn{margin-top:16px;border-bottom:none;padding:14px 18px}
+  .logo small{display:none}
+  section{padding:80px 0}
+  .hero{padding:56px 0 72px}
+  .hero-grid,.section-head,.about-grid,.faq-wrap,.contact-grid{grid-template-columns:1fr}
+  .section-head{gap:16px;margin-bottom:40px}
+  .section-head p{justify-self:start}
+  .fix-grid,.price-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:40px}
+  .steps::before{display:none}
+  .contact{padding-top:80px}
+  .site-footer{margin-top:64px}
 }
-.logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
-.logo span { font-weight: 400; color: var(--muted); }
-nav { display: flex; gap: 28px; align-items: center; }
-nav a { color: var(--text); font-weight: 500; font-size: 0.95rem; }
-.hero {
-  padding: 80px 0 60px;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  gap: 60px;
-  align-items: start;
-}
-@media (max-width: 860px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-}
-h1 {
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  line-height: 1.1;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-}
-.sub {
-  font-size: 1.15rem;
-  color: var(--muted);
-  margin-bottom: 32px;
-  max-width: 520px;
-}
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 24px 0 32px;
-}
-.badge {
-  background: #e8f0fe;
-  color: var(--accent);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-.cta-stack {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 4px 20px rgba(15,31,56,0.06);
-}
-.cta-stack h3 { font-size: 1.25rem; margin-bottom: 8px; }
-.cta-stack p { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
-.btn {
-  display: inline-block;
-  background: var(--accent);
-  color: white;
-  padding: 14px 24px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
-  width: 100%;
-  margin-bottom: 12px;
-  border: none;
-  cursor: pointer;
-}
-.btn:hover { background: var(--accent-dark); text-decoration: none; }
-.btn-secondary {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-.btn-secondary:hover { background: #f8f7f4; }
-section { padding: 80px 0; }
-section h2 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-.section-sub { color: var(--muted); margin-bottom: 40px; max-width: 640px; }
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.pain-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 28px;
-}
-.pain-card h3 { margin: 12px 0 8px; font-size: 1.2rem; }
-.pain-card .problem { color: #c53030; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
-.pain-card .fix { color: #276749; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 16px; }
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-.work-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  min-height: 280px;
-  display: flex;
-  flex-direction: column;
-}
-.work-preview {
-  height: 160px;
-  background: linear-gradient(135deg, #e8f0fe, #f4f3ee);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-.work-info { padding: 20px; flex: 1; }
-.work-info h3 { font-size: 1.1rem; margin-bottom: 6px; }
-.label { font-size: 0.8rem; color: var(--muted); background: #f0efe9; padding: 4px 10px; border-radius: 999px; display: inline-block; margin-bottom: 10px; }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.price-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  text-align: center;
-}
-.price-card.featured {
-  border-color: var(--accent);
-  box-shadow: 0 8px 30px rgba(11,107,234,0.12);
-  position: relative;
-}
-.price-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
-.price { font-size: 2.4rem; font-weight: 700; margin: 16px 0; }
-.price span { font-size: 1rem; font-weight: 500; color: var(--muted); }
-.process {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-}
-.step {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-}
-.step-num {
-  display: inline-block;
-  background: var(--accent);
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 32px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-}
-.step h3 { margin-bottom: 8px; }
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-@media (max-width: 800px) {
-  .about-grid { grid-template-columns: 1fr; }
-}
-.faq details {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 12px;
-  padding: 16px 20px;
-}
-.faq summary {
-  font-weight: 600;
-  cursor: pointer;
-  list-style: none;
-}
-.faq summary::-webkit-details-marker { display: none; }
-.faq details p { margin-top: 10px; color: var(--muted); }
-footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-.signature { margin-top: 12px; font-style: italic; }
-.ticker {
-  overflow: hidden;
-  white-space: nowrap;
-  background: #0f1f38;
-  color: #f4f3ee;
-  padding: 12px 0;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  position: relative;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 35s linear infinite;
-  will-change: transform;
-}
-.ticker-group {
-  flex-shrink: 0;
-  display: flex;
-}
-.ticker-group span {
-  padding-right: 2rem;
-}
-.ticker-track:hover { animation-play-state: paused; }
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ticker-track { animation: none; }
+@media (max-width:520px){
+  body{font-size:16px}
+  .container{padding:0 18px}
+  .hero h1{font-size:2.45rem}
+  .hero-actions .btn{flex:1 1 100%}
+  .proof div{min-width:0;padding-right:10px}
+  .proof div+div{padding-left:10px}
+  .proof strong{font-size:1.2rem}
+  .check-card,.brief{padding:26px 22px}
+  .check-card h2{font-size:1.55rem}
+  .fix-card,.price-card{padding:28px 22px}
+  .work-preview{height:250px;padding:22px 18px 0}
+  .b-body{height:180px;padding:12px}
+  .phone{width:120px;height:205px}
+  .phone.tall{height:220px}
+  .phone-pair{gap:12px}
+  .am-chart{height:44px}
+  .work-info{flex-direction:column;gap:10px}
+  .steps{grid-template-columns:1fr}
+  .cap-row{grid-template-columns:1fr;gap:4px}
+  .faq .answer{padding-right:0}
+  .two{grid-template-columns:1fr}
+  .care{padding:20px}
+  .site-footer{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-    <div class="logo">built by mast <span>· Gold Coast & Brisbane</span></div>
-    <nav>
+
+<header class="site-header" id="top">
+  <div class="container nav-wrap">
+    <a href="#top" class="logo" aria-label="built by mast home"><span class="logo-mark">m</span>built by mast <small>· Gold Coast &amp; Brisbane</small></a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+    <nav class="nav" id="site-nav">
       <a href="#work">Work</a>
       <a href="#pricing">Pricing</a>
       <a href="#process">Process</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn btn-navy">Get a free check</a>
     </nav>
   </div>
 </header>
 
-<div class="ticker">
+<div class="ticker" aria-label="Platforms and promises">
   <div class="ticker-track">
     <div class="ticker-group">
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
+      <span>Hostinger</span><i>✦</i>
+      <span>VentraIP</span><i>✦</i>
+      <span>SiteGround</span><i>✦</i>
+      <span>Cloudflare Pages</span><i>✦</i>
+      <span>Vercel</span><i>✦</i>
+      <span>Mobile-first builds</span><i>✦</i>
+      <span>Fixed quote upfront</span><i>✦</i>
+      <span>Gold Coast &amp; Brisbane</span><i>✦</i>
+      <span>Hostinger</span><i>✦</i>
+      <span>VentraIP</span><i>✦</i>
+      <span>SiteGround</span><i>✦</i>
+      <span>Cloudflare Pages</span><i>✦</i>
+      <span>Vercel</span><i>✦</i>
+      <span>Mobile-first builds</span><i>✦</i>
+      <span>Fixed quote upfront</span><i>✦</i>
+      <span>Gold Coast &amp; Brisbane</span><i>✦</i>
+      <span>Hostinger</span><i>✦</i>
+      <span>VentraIP</span><i>✦</i>
+      <span>SiteGround</span><i>✦</i>
+      <span>Cloudflare Pages</span><i>✦</i>
+      <span>Vercel</span><i>✦</i>
+      <span>Mobile-first builds</span><i>✦</i>
+      <span>Fixed quote upfront</span><i>✦</i>
+      <span>Gold Coast &amp; Brisbane</span><i>✦</i>
     </div>
     <div class="ticker-group" aria-hidden="true">
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
-      <span>Hostinger ·</span>
-      <span>VentraIP ·</span>
-      <span>SiteGround ·</span>
-      <span>Cloudflare Pages ·</span>
-      <span>Vercel ·</span>
+      <span>Hostinger</span><i>✦</i>
+      <span>VentraIP</span><i>✦</i>
+      <span>SiteGround</span><i>✦</i>
+      <span>Cloudflare Pages</span><i>✦</i>
+      <span>Vercel</span><i>✦</i>
+      <span>Mobile-first builds</span><i>✦</i>
+      <span>Fixed quote upfront</span><i>✦</i>
+      <span>Gold Coast &amp; Brisbane</span><i>✦</i>
+      <span>Hostinger</span><i>✦</i>
+      <span>VentraIP</span><i>✦</i>
+      <span>SiteGround</span><i>✦</i>
+      <span>Cloudflare Pages</span><i>✦</i>
+      <span>Vercel</span><i>✦</i>
+      <span>Mobile-first builds</span><i>✦</i>
+      <span>Fixed quote upfront</span><i>✦</i>
+      <span>Gold Coast &amp; Brisbane</span><i>✦</i>
+      <span>Hostinger</span><i>✦</i>
+      <span>VentraIP</span><i>✦</i>
+      <span>SiteGround</span><i>✦</i>
+      <span>Cloudflare Pages</span><i>✦</i>
+      <span>Vercel</span><i>✦</i>
+      <span>Mobile-first builds</span><i>✦</i>
+      <span>Fixed quote upfront</span><i>✦</i>
+      <span>Gold Coast &amp; Brisbane</span><i>✦</i>
     </div>
   </div>
 </div>
 
+<main>
 <section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Web design studio · Gold Coast &amp; Brisbane</span>
+      <h1>Your website should <span class="serif">win you work.</span> Most don’t.</h1>
+      <p class="lede">I build fast, mobile-first websites for Gold Coast and Brisbane businesses that live on enquiries. Fixed quote upfront. You deal with me directly, start to finish.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-navy">Book a free site check <span class="arrow">→</span></a>
+        <a href="#work" class="btn btn-ghost">See recent work</a>
+      </div>
+      <div class="proof">
+        <div><strong>Fixed</strong><span>Quote before any work starts</span></div>
+        <div><strong>48 hours</strong><span>First preview on starter builds</span></div>
+        <div><strong>1-on-1</strong><span>Direct with Amy, no account managers</span></div>
+      </div>
+    </div>
+
+    <aside class="check-card" aria-labelledby="check-title">
+      <span class="tag">Free · No obligation</span>
+      <h2 id="check-title">Free 10-minute <span class="serif">site check</span></h2>
+      <p>Send me your site (or tell me you don’t have one yet). I’ll look at three things and tell you plainly what’s working and what isn’t.</p>
+      <ul class="check-list">
+        <li><span class="n">i.</span><div><b>Mobile speed &amp; tap targets</b><small>How it loads on a phone, and whether buttons are easy to hit.</small></div></li>
+        <li><span class="n">ii.</span><div><b>First-5-second clarity</b><small>Can a visitor tell what you do and what to do next?</small></div></li>
+        <li><span class="n">iii.</span><div><b>Enquiry &amp; booking flow</b><small>How many steps it takes to call, book or ask for a quote.</small></div></li>
+      </ul>
+      <div class="actions">
+        <a href="#contact" class="btn btn-light">Get my free check <span class="arrow">→</span></a>
+        <a href="#pricing" class="btn btn-ghost-light">See pricing</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section id="pain" class="bg-white">
   <div class="container">
-    <div class="hero-inner">
+    <div class="section-head reveal">
       <div>
-        <h1>Your website should win you work. Most don’t.</h1>
-        <p class="sub">I build fast, mobile-first websites for Gold Coast and Brisbane businesses that live on enquiries. Fixed quote upfront. First preview within 48 hours. You deal with me directly.</p>
-        <div class="badges">
-          <span class="badge">Fixed quote</span>
-          <span class="badge">48-hour preview</span>
-          <span class="badge">1-on-1 with Amy</span>
+        <span class="eyebrow">What usually breaks</span>
+        <h2>Three things I see <span class="serif">again and again.</span></h2>
+      </div>
+      <p>These are the issues that come up most often when I review local business sites. Each one is fixable, and none of them needs a huge budget.</p>
+    </div>
+    <div class="fix-grid">
+      <article class="fix-card reveal">
+        <div class="num">01</div>
+        <h3>People can’t find how to contact you on a phone.</h3>
+        <div class="block"><div class="block-label">Problem</div><p>The number is buried in the footer, the form is three taps deep, or the button is too small to hit with a thumb. The visitor gives up and calls someone else.</p></div>
+        <div class="block fix"><div class="block-label">How I fix it</div><p>Tap-to-call and a short enquiry form sit right where people look, on every page, sized for thumbs.</p></div>
+      </article>
+      <article class="fix-card reveal">
+        <div class="num">02</div>
+        <h3>Pages are slow on mobile data.</h3>
+        <div class="block"><div class="block-label">Problem</div><p>Oversized photos, heavy page builders and cheap hosting add up. On a phone in a car park, a blank screen for a few seconds is enough to lose someone.</p></div>
+        <div class="block fix"><div class="block-label">How I fix it</div><p>Properly sized images, a clean, lightweight build and reliable hosting on your own account.</p></div>
+      </article>
+      <article class="fix-card reveal">
+        <div class="num">03</div>
+        <h3>It’s not clear what you do, or what to do next.</h3>
+        <div class="block"><div class="block-label">Problem</div><p>Vague headlines, stock photos and no obvious next step. Visitors can’t tell in a glance whether you’re the right fit, so they leave.</p></div>
+        <div class="block fix"><div class="block-label">How I fix it</div><p>A plain-English headline, the service area up front and one clear next step on every page.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Recent work</span>
+        <h2>Studio projects &amp; <span class="serif">sample builds.</span></h2>
+      </div>
+      <p>A mix of studio projects and sample builds, shown as simplified previews. Nothing is marked live until the client confirms it.</p>
+    </div>
+    <div class="work-grid">
+
+      <article class="work-card reveal">
+        <div class="work-preview pv-fixyo" aria-hidden="true">
+          <div class="browser">
+            <div class="b-bar"><i></i><i></i><i></i><div class="b-url">fixyo.ai</div></div>
+            <div class="b-body">
+              <div class="ui-nav"><div class="ui-logo"></div><div class="ui-links"><i></i><i></i><i></i></div><div class="ui-pill"></div></div>
+              <div class="fy-hero">
+                <div>
+                  <span class="ln h" style="width:92%"></span><span class="ln h" style="width:70%"></span>
+                  <span class="ln" style="width:85%"></span><span class="ln" style="width:60%"></span>
+                  <div class="fy-search"><i></i><b></b></div>
+                </div>
+                <div class="fy-chat"><div class="fy-msg"></div><div class="fy-msg me"></div><div class="fy-msg w2"></div><div class="fy-msg me" style="width:45%"></div></div>
+              </div>
+              <div class="fy-tiles"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="cta-stack">
-        <h3>Get a free check</h3>
-        <p>Send me your current site (or say you don’t have one). I’ll tell you what’s broken and what a fix looks like.</p>
-        <a href="#contact" class="btn">Free website check</a>
-        <a href="#contact" class="btn btn-secondary">Get a free preview</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="pain">
-  <div class="container">
-    <h2>Sound familiar?</h2>
-    <p class="section-sub">Most Gold Coast and Brisbane business sites struggle with the same three things.</p>
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="problem">Hard to contact on phone</div>
-        <h3>People can’t find your number or form on mobile.</h3>
-        <p>About 40% of local sites still hide contact methods or make them tiny on phones. Enquiries die before they start.</p>
-        <div class="fix">I put the call and form front and centre.</div>
-      </div>
-      <div class="pain-card">
-        <div class="problem">Slow on phone</div>
-        <h3>Pages take too long to load on mobile data.</h3>
-        <p>People bounce if it doesn’t appear quickly. Most local sites fail basic speed checks on phones.</p>
-        <div class="fix">Proper image sizes, clean build, and hosting that doesn’t choke.</div>
-      </div>
-      <div class="pain-card">
-        <div class="problem">Unclear in five seconds</div>
-        <h3>Visitors don’t know what you do or what to do next.</h3>
-        <p>83% of sites fail a simple five-second test. People leave before they understand the offer.</p>
-        <div class="fix">Clear headline, clear next step, no fluff.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="work" style="background:#fff;">
-  <div class="container">
-    <h2>Recent work</h2>
-    <p class="section-sub">A mix of studio projects and sample builds. Nothing marked live until the client confirms it.</p>
-    <div class="portfolio-grid">
-      <div class="work-card">
-        <div class="work-preview">FixYo preview</div>
         <div class="work-info">
+          <div><h3>FixYo</h3><p>fixyo.ai</p></div>
           <span class="label">Studio project · In progress</span>
-          <h3>FixYo</h3>
-          <p>fixyo.ai</p>
         </div>
-      </div>
-      <div class="work-card">
-        <div class="work-preview">TruckAmate preview</div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-preview pv-truck" aria-hidden="true">
+          <div class="browser">
+            <div class="b-bar"><i></i><i></i><i></i><div class="b-url">truckamate.com.au</div></div>
+            <div class="b-body">
+              <div class="tk-wrap">
+                <div class="tk-side"><div class="ui-logo"></div><i class="on"></i><i></i><i></i><i></i><i style="width:70%"></i></div>
+                <div class="tk-main">
+                  <div class="tk-stats"><div><b></b><i></i></div><div><b></b><i></i></div><div><b></b><i></i></div></div>
+                  <div class="tk-map">
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none"><path d="M10 80 C 50 70, 60 30, 100 40 S 160 20, 190 15" fill="none" stroke="#f2a33a" stroke-width="2" stroke-dasharray="5 4" opacity=".85"/></svg>
+                    <span class="tk-pin" style="left:4%;top:74%"></span>
+                    <span class="tk-pin" style="left:48%;top:36%;background:#5fd08a;box-shadow:0 0 0 5px rgba(95,208,138,.2)"></span>
+                    <span class="tk-pin" style="left:92%;top:10%"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="work-info">
+          <div><h3>TruckAmate</h3><p>truckamate.com.au</p></div>
           <span class="label">In progress</span>
-          <h3>TruckAmate</h3>
-          <p>truckamate.com.au</p>
         </div>
-      </div>
-      <div class="work-card">
-        <div class="work-preview">Ascent Money preview</div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-preview pv-ascent" aria-hidden="true">
+          <div class="phone-pair">
+            <div class="phone tall">
+              <div class="am-bal"><i></i><b></b></div>
+              <div class="am-chart"><i style="height:38%"></i><i style="height:62%"></i><i style="height:48%"></i><i class="hi" style="height:86%"></i><i style="height:56%"></i><i style="height:70%"></i></div>
+              <div class="am-row"><em></em><i></i></div><div class="am-row"><em></em><i style="width:60%;flex:none"></i></div><div class="am-row"><em></em><i></i></div>
+            </div>
+            <div class="phone">
+              <span class="ln h" style="width:70%;margin-top:14px"></span>
+              <div class="am-ring"></div>
+              <span class="ln" style="width:90%"></span><span class="ln" style="width:65%"></span>
+              <div class="am-btn"></div>
+            </div>
+          </div>
+        </div>
         <div class="work-info">
+          <div><h3>Ascent Money</h3><p>ascentmoney.app</p></div>
           <span class="label">In progress</span>
-          <h3>Ascent Money</h3>
-          <p>ascentmoney.app</p>
         </div>
-      </div>
-      <div class="work-card">
-        <div class="work-preview">Performance workshop</div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-preview pv-perf" aria-hidden="true">
+          <div class="browser">
+            <div class="b-bar"><i></i><i></i><i></i><div class="b-url">sample · performance workshop</div></div>
+            <div class="b-body">
+              <div class="ui-nav"><div class="ui-logo"></div><div class="ui-links"><i></i><i></i><i></i><i></i></div><div class="ui-pill"></div></div>
+              <div class="pf-hero"><span class="ln h"></span><span class="ln"></span><div class="pf-stripe"></div><b></b></div>
+              <div class="pf-cards"><div><em></em><span class="ln" style="width:80%"></span><span class="ln" style="width:55%;margin:0"></span></div><div><em></em><span class="ln" style="width:70%"></span><span class="ln" style="width:50%;margin:0"></span></div><div><em></em><span class="ln" style="width:85%"></span><span class="ln" style="width:45%;margin:0"></span></div></div>
+            </div>
+          </div>
+        </div>
         <div class="work-info">
-          <span class="label">Sample build</span>
-          <h3>Performance workshop</h3>
-          <p>Sample only</p>
+          <div><h3>Gold Coast Performance Workshop</h3><p>Concept build · not a real client</p></div>
+          <span class="label sample">Sample build</span>
         </div>
-      </div>
+      </article>
+
     </div>
   </div>
 </section>
 
-<section id="pricing">
+<section id="pricing" class="bg-paper">
   <div class="container">
-    <h2>Pricing</h2>
-    <p class="section-sub">Fixed quote upfront. No hourly surprises.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Mast Launch</h3>
-        <div class="price">$3,500</div>
-        <p>Starter site for businesses that need a proper online presence. Mobile-first, fast, and ready for enquiries.</p>
-        <a href="#contact" class="btn">Get a quote</a>
-      </div>
-      <div class="price-card featured">
-        <h3>Mast Growth</h3>
-        <div class="price">$6,500</div>
-        <p>More pages, better structure, and room to grow. For businesses ready to turn the site into a proper tool.</p>
-        <a href="#contact" class="btn">Get a quote</a>
-      </div>
-      <div class="price-card">
-        <h3>Mast Custom</h3>
-        <div class="price">$10,000+</div>
-        <p>Bigger builds, custom features, or web apps. Scoped and quoted properly before any work starts.</p>
-        <a href="#contact" class="btn">Get a quote</a>
-      </div>
-    </div>
-    <p style="text-align:center; margin-top:32px; color:var(--muted);">Care plans $250–$600/month after launch if you want ongoing help.</p>
-  </div>
-</section>
-
-<section id="process" style="background:#fff;">
-  <div class="container">
-    <h2>How it works</h2>
-    <div class="process">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Chat & quote</h3>
-        <p>Tell me what you need. I send a fixed quote. No obligation.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>First preview</h3>
-        <p>You see a real preview within 48 hours on starter builds.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Build & refine</h3>
-        <p>I build it. You give feedback. We tighten it until it’s right.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h3>Launch & hand over</h3>
-        <p>Domain, hosting and email sorted on your account. You get full admin access. Care plan if you want ongoing help.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
+    <div class="section-head reveal">
       <div>
-        <h2>About</h2>
-        <p>I’m Amy. I build websites and web apps for Gold Coast and Brisbane businesses. You deal with me directly — no account managers, no offshore team.</p>
-        <p style="margin-top:16px;">I’m open that I use AI to build faster. That doesn’t change the quality or the fact that you deal with one person who knows the job.</p>
+        <span class="eyebrow">Pricing</span>
+        <h2>Clear, <span class="serif">fixed</span> pricing.</h2>
       </div>
-      <div>
-        <h3>What I build</h3>
-        <ul style="margin-top:12px; padding-left:20px; color:var(--muted);">
-          <li>Websites and rebuilds</li>
-          <li>Web apps and simple tools</li>
-          <li>Online booking and quote forms</li>
-          <li>Ongoing care and updates</li>
+      <p>Starting prices for each package. You get a fixed written quote for your exact scope before any work starts, so there are no hourly surprises.</p>
+    </div>
+    <div class="price-grid">
+      <article class="price-card reveal">
+        <span class="tier">Mast Launch</span>
+        <div class="amount">$3,500</div>
+        <p class="desc">A proper online presence for a business that needs to look credible and take enquiries.</p>
+        <ul>
+          <li>Core pages: home, services, about, contact</li>
+          <li>Mobile-first design and build</li>
+          <li>Tap-to-call and enquiry form</li>
+          <li>Basic on-page SEO and Google Business link-up</li>
+          <li>Set up on hosting in your name</li>
         </ul>
+        <a href="#contact" class="btn btn-ghost">Get a quote</a>
+      </article>
+      <article class="price-card featured reveal">
+        <span class="popular">Recommended</span>
+        <span class="tier">Mast Growth</span>
+        <div class="amount">$6,500</div>
+        <p class="desc">More pages, better structure and room to grow. For businesses ready to make the site a real sales tool.</p>
+        <ul>
+          <li>Everything in Launch</li>
+          <li>Individual service and location pages</li>
+          <li>Online booking or quote request flow</li>
+          <li>Content structure for local search</li>
+          <li>Analytics and enquiry tracking set up</li>
+        </ul>
+        <a href="#contact" class="btn btn-light">Get a quote <span class="arrow">→</span></a>
+      </article>
+      <article class="price-card reveal">
+        <span class="tier">Mast Custom</span>
+        <div class="amount">$10,000<small>+</small></div>
+        <p class="desc">Bigger builds, custom features or web apps, scoped properly before anything starts.</p>
+        <ul>
+          <li>Discovery and written scope</li>
+          <li>Custom features, portals or dashboards</li>
+          <li>Integrations with the tools you already use</li>
+          <li>Staged previews and sign-off</li>
+          <li>Fixed quote per stage</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Talk it through</a>
+      </article>
+    </div>
+    <div class="care reveal">
+      <div><b>Optional care plan after launch</b><p>Updates, small changes and keeping things running. Or run the site yourself, it’s on your account.</p></div>
+      <div class="care-price">$250–$600/month</div>
+    </div>
+    <p class="fine">Exact inclusions are confirmed in your written quote.</p>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2>Four steps, <span class="serif">one person.</span></h2>
       </div>
+      <p>No hand-offs between departments. The person who quotes your job is the person who builds it.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="step-dot">1</div><h3>Chat &amp; quote</h3><p>Tell me what you need. I send a fixed quote. No obligation.</p><span class="when">Free</span></div>
+      <div class="step"><div class="step-dot">2</div><h3>First preview</h3><p>You see a real preview within 48 hours on starter builds.</p><span class="when">48 hours</span></div>
+      <div class="step"><div class="step-dot">3</div><h3>Build &amp; refine</h3><p>I build it. You give feedback. We tighten it until it’s right.</p><span class="when">Usually 1–2 weeks</span></div>
+      <div class="step"><div class="step-dot">4</div><h3>Launch &amp; hand over</h3><p>Domain, hosting and email sorted on your account, with full admin access.</p><span class="when">Yours to keep</span></div>
     </div>
   </div>
 </section>
 
-<section id="faq" style="background:#fff;">
-  <div class="container">
-    <h2>FAQs</h2>
-    <div class="faq">
-      <details>
-        <summary>What do I get after launch?</summary>
-        <p>The site lives on hosting in your name (Hostinger, VentraIP or SiteGround). You get full admin access. I can stay on a care plan if you want ongoing help, or you can run it yourself.</p>
-      </details>
-      <details>
-        <summary>What happens after launch?</summary>
-        <p>Optional care plans from $250–$600/month. Or run the site yourself from the hosting account.</p>
-      </details>
-      <details>
-        <summary>How long does a starter site take?</summary>
-        <p>First preview within 48 hours. Full launch usually 1–2 weeks depending on content and feedback.</p>
-      </details>
-      <details>
-        <summary>Do you do ongoing updates?</summary>
-        <p>Yes. Care plans cover updates, small changes, and keeping things running.</p>
-      </details>
+<section id="about" class="bg-white">
+  <div class="container about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">About</span>
+      <h2>Direct, <span class="serif">1-on-1</span> with Amy.</h2>
+      <p class="lead">I’m Amy. I build websites and web apps for Gold Coast and Brisbane businesses.</p>
+      <p>You deal with me directly. No account managers, no offshore team, no being passed around. If something isn’t a good fit for what I do, I’ll tell you before you pay.</p>
+      <p>I’m open that I use AI to build faster. It doesn’t change the quality, or the fact that you deal with one person who knows the job.</p>
+      <div class="sig"><div class="sig-avatar">A</div><div><b>Amy Bennett</b><span>Founder, built by mast</span></div></div>
+    </div>
+    <div class="cap-card reveal">
+      <header><b>What I build</b><span>Capabilities</span></header>
+      <dl>
+        <div class="cap-row"><dt>Websites</dt><dd>New builds and rebuilds for local service businesses.</dd></div>
+        <div class="cap-row"><dt>Web apps</dt><dd>Simple tools, portals and dashboards.</dd></div>
+        <div class="cap-row"><dt>Enquiries</dt><dd>Online booking and quote request forms.</dd></div>
+        <div class="cap-row"><dt>Hosting</dt><dd>Hostinger, VentraIP, SiteGround, Cloudflare Pages or Vercel, set up in your name.</dd></div>
+        <div class="cap-row"><dt>Care</dt><dd>Ongoing updates and small changes after launch.</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
-<section id="contact">
-  <div class="container" style="text-align:center; max-width:640px;">
-    <h2>Get in touch</h2>
-    <p class="section-sub">Call, email or send an enquiry. It comes straight to me.</p>
-    <p style="font-size:1.3rem; margin:20px 0;"><a href="tel:0403633404">0403 633 404</a></p>
-    <p><a href="mailto:hello@builtbymast.com">hello@builtbymast.com</a></p>
+<section id="faq">
+  <div class="container faq-wrap">
+    <div class="intro reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Good <span class="serif">questions.</span></h2>
+      <p>Anything else, call or email me and I’ll give you a straight answer.</p>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>What do I get after launch?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="answer">The site lives on hosting in your name (for example Hostinger, VentraIP or SiteGround). You get full admin access. I can stay on a care plan if you want ongoing help, or you can run it yourself.</div>
+      </details>
+      <details>
+        <summary>Do I have to sign up for a care plan?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="answer">No. Care plans are optional, from $250–$600/month. You can also run the site yourself from your own hosting account.</div>
+      </details>
+      <details>
+        <summary>How long does a starter site take?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="answer">First preview within 48 hours. Full launch usually takes 1–2 weeks, depending on content and feedback.</div>
+      </details>
+      <details>
+        <summary>Do you do ongoing updates?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="answer">Yes. Care plans cover updates, small changes and keeping things running.</div>
+      </details>
+      <details>
+        <summary>Is the quote really fixed?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="answer">Yes, for the scope written in the quote. If you ask for something new partway through, I’ll quote that separately before doing it, so you’re never surprised by the bill.</div>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Let’s make your site <span class="serif">earn its keep.</span></h2>
+        <p class="lede">Call, email or build a quick brief below. It comes straight to me, and I’ll reply personally.</p>
+        <div class="direct">
+          <a class="big" href="tel:+61403633404"><span><small>Call or text</small><b>0403 633 404</b></span><span class="arrow">→</span></a>
+          <div class="direct-row">
+            <a class="big" href="mailto:admin@builtbymast.com.au"><span><small>Email</small><b>admin@builtbymast.com.au</b></span></a>
+            <button class="copy-btn" type="button" data-copy="admin@builtbymast.com.au" aria-label="Copy email address">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <form class="brief reveal" id="brief" novalidate>
+        <h3>Build your enquiry email</h3>
+        <p>Fill in what you can. This opens a pre-filled email in your own mail app. Nothing is sent until you press send.</p>
+        <div class="two">
+          <div class="field"><label for="b-name">Your name</label><input id="b-name" type="text" autocomplete="name"></div>
+          <div class="field"><label for="b-biz">Business</label><input id="b-biz" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="field"><span class="lbl">I’m after</span>
+          <div class="chips">
+            <label><input type="radio" name="need" value="A free site check" checked><span>Free site check</span></label>
+            <label><input type="radio" name="need" value="A new website"><span>New website</span></label>
+            <label><input type="radio" name="need" value="A rebuild of my current site"><span>Rebuild</span></label>
+            <label><input type="radio" name="need" value="A web app or custom tool"><span>Web app</span></label>
+          </div>
+        </div>
+        <div class="field"><label for="b-site">Current website (if any)</label><input id="b-site" type="text" placeholder="yourbusiness.com.au"></div>
+        <div class="field"><label for="b-msg">Anything else?</label><textarea id="b-msg" placeholder="What’s not working, timing, budget…"></textarea></div>
+        <button class="btn btn-navy" type="submit">Open email draft <span class="arrow">→</span></button>
+        <p class="note">Opens your email app addressed to admin@builtbymast.com.au.</p>
+      </form>
+    </div>
+
+    <footer class="site-footer">
+      <p>built by mast · ABN 19 185 947 021 · Gold Coast &amp; Brisbane · Fixed quote upfront · 1-on-1 with Amy</p>
+      <nav><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#top">Back to top ↑</a></nav>
+    </footer>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>built by mast · Gold Coast & Brisbane · Fixed quote upfront · 1-on-1 with Amy</p>
-    <p class="signature">If it runs on the web, I can build it. And if I can’t do it brilliantly, I’ll tell you before you pay.</p>
-  </div>
-</footer>
+<script>
+(function(){
+  var header=document.querySelector('.site-header'),toggle=document.querySelector('.menu-toggle');
+  toggle.addEventListener('click',function(){var o=header.classList.toggle('menu-open');toggle.setAttribute('aria-expanded',o);toggle.setAttribute('aria-label',o?'Close menu':'Open menu');});
+  document.querySelectorAll('.nav a').forEach(function(a){a.addEventListener('click',function(){header.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');});});
+
+  document.querySelectorAll('.copy-btn').forEach(function(b){b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy');
+    function ok(){b.textContent='Copied';b.classList.add('done');setTimeout(function(){b.textContent='Copy';b.classList.remove('done');},1800);}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(ok);}else{var i=document.createElement('textarea');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(i);}
+  });});
+
+  document.getElementById('brief').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim();};
+    var need=(document.querySelector('input[name="need"]:checked')||{}).value||'A free site check';
+    var name=v('b-name'),biz=v('b-biz'),site=v('b-site'),msg=v('b-msg');
+    var subject='Enquiry: '+need+(biz?' – '+biz:'');
+    var lines=['Hi Amy,','','I\'m after: '+need+'.'];
+    if(biz)lines.push('Business: '+biz);
+    if(site)lines.push('Current website: '+site);
+    if(msg){lines.push('');lines.push(msg);}
+    lines.push('');lines.push('Thanks,');lines.push(name||'');
+    window.location.href='mailto:admin@builtbymast.com.au?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+  });
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+})();
+</script>
 </body>
 </html>
