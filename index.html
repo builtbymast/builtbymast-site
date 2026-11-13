@@ -232,18 +232,27 @@ footer {
 .ticker {
   overflow: hidden;
   white-space: nowrap;
-  background: #e8f0fe;
+  background: #0f1f38;
+  color: #f4f3ee;
   padding: 12px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
   position: relative;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 .ticker-track {
-  display: inline-flex;
+  display: flex;
+  width: max-content;
   animation: marquee 35s linear infinite;
   will-change: transform;
 }
-.ticker-track span {
+.ticker-group {
+  flex-shrink: 0;
+  display: flex;
+}
+.ticker-group span {
   padding-right: 2rem;
 }
 .ticker-track:hover { animation-play-state: paused; }
@@ -272,8 +281,90 @@ footer {
 
 <div class="ticker">
   <div class="ticker-track">
-    <span>Hostinger · VentraIP · SiteGround · Cloudflare Pages · Vercel · Hostinger · VentraIP · SiteGround · Cloudflare Pages · Vercel ·</span>
-    <span>Hostinger · VentraIP · SiteGround · Cloudflare Pages · Vercel · Hostinger · VentraIP · SiteGround · Cloudflare Pages · Vercel ·</span>
+    <div class="ticker-group">
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+    </div>
+    <div class="ticker-group" aria-hidden="true">
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+      <span>Hostinger ·</span>
+      <span>VentraIP ·</span>
+      <span>SiteGround ·</span>
+      <span>Cloudflare Pages ·</span>
+      <span>Vercel ·</span>
+    </div>
   </div>
 </div>
 
